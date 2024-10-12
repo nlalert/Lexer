@@ -3,12 +3,13 @@ Define lexical specifications for JFlex to generate a lexer for us.
 
 ## To Build `TermProjectLexer.java`
 You must have [JFlex](https://jflex.de/) installed on your machine.
-Then use this command to send flex file be read by JFlex to generate Java code.
+
+Use this command to send `.flex`/`.lex` file to be read by JFlex to generate Java code of a lexer:
 ```sh
 jflex <file_name>
 ```
 
-In my case:
+Example:
 ```sh
 jflex KiwiLexer.lex
 ```
