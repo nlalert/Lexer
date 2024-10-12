@@ -1,0 +1,48 @@
++ - * / = > >= < <= == ++ --
+( )
+;
+if
+then
+else
+endif
+while
+do
+endwhile
+print
+newline
+read
+123
+4567
+myVar
+variable123
+another_var
+a1b2c3
+id1
+id1  // ทดสอบการตรวจสอบว่า identifier มีใน symbol table แล้ว
+
+"This is a normal string."
+"String with an escaped quote: \" and a backslash: \\"
+"String with newline: \n and tab: \t and backspace: \b"
+"\t"
+"\f"
+"''"
+// brnt \b \r \n \t\\ \"
+/* This is a block comment */
+//)
+/* Another comment here */
+// Line comment here
+A + B
+if (a > b) then
+  print "Hello, World!";
+  a++;
+endif
+while a <= 10 do
+  read a;
+  a = a + 1;
+endwhile
+
+
+"Hello "World"
+123abc
+"unterminated string
+@invalidSymbol
