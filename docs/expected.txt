@@ -1,0 +1,11 @@
+new identifier: A
+operator: +
+new identifier: B
+operator: -
+operator: *
+keyword: if
+keyword: then
+new identifier: id1
+new identifier: id2
+identifier "id1" already in symbol table
+string: "Hello World"

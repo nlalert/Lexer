@@ -1,1 +1,11 @@
+# Java specific ignores
 *.class
+
+# macOS specific ignores
+.DS_Store
+
+# Repository's specific ignores
+TermProjectLexer.java
+TermProjectLexer.java~
+/input.txt
+/output.txt
