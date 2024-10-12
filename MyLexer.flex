@@ -15,13 +15,13 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 /* Comments */
 Comment            = {TraditionalComment} | {EndOfLineComment}
 TraditionalComment = "/*" [^*]* "*" + "/" 
-EndOfLineComment   = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
 
 /* Identifiers, Literals, and Operators */
 Identifier         = [:jletter:][:jletterdigit:]*
-IntegerLiteral     = 0 | [1-9][0-9]*
+IntegerLiteral     = [0-9]+
 StringLiteral      = \"{InputCharacter}*\"
-UnterminatedString = \"{InputCharacter}*{LineTerminator}
+UnterminatedString = \"{InputCharacter}*
 
 Operator           = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
 Parenthesis        = "(" | ")"
@@ -51,6 +51,11 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
     }
   }
 
+  {IntegerLiteral}{Identifier} {
+    System.out.println("Error: invalid identifier: " + yytext());
+    System.exit(1);
+  }
+  
   /* Literals */
   {IntegerLiteral} { System.out.println("integer: " + yytext()); }
   {StringLiteral}  { System.out.println("string: " + yytext()); }

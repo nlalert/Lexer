@@ -11,6 +11,7 @@ endwhile
 print
 newline
 read
+0523
 123
 4567
 myVar
@@ -43,6 +44,6 @@ endwhile
 
 
 "Hello "World"
-123abc
 "unterminated string
-@invalidSymbol
+//@invalidSymbol
+//123abc
