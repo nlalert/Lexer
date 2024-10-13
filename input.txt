@@ -1,6 +1,27 @@
+//operator
 + - * / = > >= < <= == ++ --
-( )
+
++
+-
+*
+/
+=
+>
+<
+>=
+<=
+==
+++
+--
+
+//parenthesis
+(   
+)
+
+//semicolon
 ;
+
+//keyword
 if
 then
 else
@@ -11,27 +32,99 @@ endwhile
 print
 newline
 read
+
+//integer
 0523
 123
 4567
+09009
+
+//valid identifier
 myVar
 variable123
-another_var
-a1b2c3
+employeeCount
+column2
+test3rd
+
+//symbol table
 id1
+id2
 id1  // ทดสอบการตรวจสอบว่า identifier มีใน symbol table แล้ว
 
+//String
 "This is a normal string."
-"String with an escaped quote: \" and a backslash: \\"
-"String with newline: \n and tab: \t and backspace: \b"
-"\t"
-"\f"
-"''"
-// brnt \b \r \n \t\\ \"
-/* This is a block comment */
-//)
-/* Another comment here */
-// Line comment here
+"Hello World"
+"HELLO WORLD"
+"inner double quote:     \"test\" "
+"inner single quote:     \'test\' "
+"backslash:       \\"
+"newline:         \n"
+"tab:             \t"
+"backspace:       \b"
+"carriage return: \r"
+
+//Comment
+// This is a single-line comment
+// Another comment line
+// Another comment line // comment again
+
+/*
+   This is a multi-line comment
+   that spans several lines
+   and it should be ignored by the lexer.
+*/
+
+/*
+   Outer comment
+   /*
+      Inner comment (should be ignored)
+   */
+   Back to outer comment
+*/
+
+// Comment before code
+int ab = 5; // Comment after code
+
+/*
+   This is a multi-line comment
+*/
+int xy = 10;
+
+// Single line comment 1
+// Single line comment 2
+/*
+   Multi-line comment 1
+*/
+/*
+   Multi-line comment 2
+   that spans multiple lines
+*/
+
+// This is an empty comment
+//
+/*
+   */
+
+// Special characters like @#$%^&* should be allowed in comments
+/*
+   Special characters within multi-line comments: @#$%^&*()!~`|
+*/
+
+// This comment has a newline escape sequence \n and a tab \t
+/*
+   Multi-line comment with a newline escape sequence \n
+   and a tab \t.
+*/
+
+// This comment contains "quotes" and an identifier identifier_123
+/*
+   Multi-line comment with "quotes" and special characters like identifier_123
+*/
+
+"String with // comment in it"
+"Another string /* comment */"
+
+//real code
 A + B
 if (a > b) then
   print "Hello, World!";
@@ -42,8 +135,11 @@ while a <= 10 do
   a = a + 1;
 endwhile
 
-
+//
 "Hello "World"
 "unterminated string
 //@invalidSymbol
 //123abc
+
+/*
+   This is an unterminated multi-line comment

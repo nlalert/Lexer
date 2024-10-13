@@ -1,0 +1,45 @@
+if then else endif endwhile read
+whiledo 
+printnewline
+
+0523
+123
+4567
+09009
+
+validIdentifier123
+validID123
+read123invalid
+invalid name
+
+"String with \n escape sequence"
+"Hello\nWorld"
+"Tab\tCharacter"
+"Backslash\\Character"
+"Quotes: \"Inside\""
+"Carriage Return\rTest"
+"Newline\nand\tTab\"Escape\""
+"String with backslash at the end \\"
+"Line1\nLine2\nLine3"
+"Multiple\t\tTabs\tand\nNewlines"
+"Special chars: \n \t \\ \" "
+"Invalid escape sequence: \x"
+"Invalid escape sequence: \c"
+
+/* this is /* comment */ */
+// Comment with special character: #
+/* Comment with newline\n in it */
+// First comment (this is a comment) x = (10 + 5); // Second comment
+/* Comment starts
+and it continues */
+/* x = 20 */
+/* variable name: invalid-name! */
+/* escape sequence: \n in comments */
+(x + y) // This adds x and y
+/* Comment */ (x + y) /* Another comment */
+i = 5 /* k = 15 */ j = 10
+(a + b) /* This comment will not affect */ (c * d)
+/* Unterminated multiline comment
+(// This is a comment)
+x = 10 /* x++ */
+y = x + 5 /* x-- */

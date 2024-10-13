@@ -14,11 +14,11 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
 Comment            = {TraditionalComment} | {EndOfLineComment}
-TraditionalComment = "/*" [^*]* "*" + "/" 
-EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
+TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
+EndOfLineComment   = "//".*
 
 /* Identifiers, Literals, and Operators */
-Identifier         = [:jletter:][:jletterdigit:]*
+Identifier         = [a-zA-Z][a-zA-Z0-9]*
 IntegerLiteral     = [0-9]+
 StringLiteral      = \"{InputCharacter}*\"
 UnterminatedString = \"{InputCharacter}*
@@ -53,7 +53,7 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
 
   {IntegerLiteral}{Identifier} {
     System.out.println("Error: invalid identifier: " + yytext());
-    System.exit(1);
+    // System.exit(1);
   }
   
   /* Literals */
@@ -63,7 +63,7 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   /* Unterminated strings */
   {UnterminatedString} { 
     System.err.println("Error: Unterminated string: " + yytext());
-    System.exit(1);
+    // System.exit(1);
   }
 
   /* Ignore comments and whitespace */
@@ -74,5 +74,5 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
 /* Fallback for unexpected characters */
 [^]                { 
   System.err.println("Error: Unexpected character '" + yytext() + "'");
-  System.exit(1);
+  // System.exit(1);
 }

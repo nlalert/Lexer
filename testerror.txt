@@ -1,0 +1,16 @@
+65270\n
+
+another_var
+another@var
+123abc456
+mixed123_@
+valid123$
+!
+!invalidID
+!valid123$hack@kmitl.co.th#kmitl
+
+"Unterminated string with escape \n
+
+if (condition) { 
+    // This is an if statement 
+}
