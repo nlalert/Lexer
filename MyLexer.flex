@@ -49,15 +49,14 @@ IntegerLiteral     = [0-9]+
 
 /* Identifiers: start with letter, followed by letters or digits */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
-
 /* Invalid Identifiers: start with a digit followed by letters/digits, or contain non-alphanum characters */
-InvalidIdentifier  = [0-9][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";]
+InvalidIdentifier  = [^a-zA-Z\s][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";][a-zA-Z0-9]*
 
 /* String literals */
 StringLiteral      = \"{InputCharacter}*\" 
 
 /* Unterminated string literals */
-UnterminatedString = \"{InputCharacter}*{LineTerminator}
+UnterminatedString = \"{InputCharacter}*
 
 %%
 
@@ -93,7 +92,6 @@ UnterminatedString = \"{InputCharacter}*{LineTerminator}
 /* Invalid Identifiers */
 {InvalidIdentifier}   { 
                         System.out.println("Error: invalid identifier: " + yytext());
-                        //System.exit(1);
                       }
 
 /* String Literals */
@@ -102,13 +100,11 @@ UnterminatedString = \"{InputCharacter}*{LineTerminator}
 /* Unterminated Strings */
 {UnterminatedString}  { 
                         System.err.println("Error: Unterminated string: " + yytext());
-                        //System.exit(1);
                       }
 
 /* Fallback for unexpected characters */
 [^]                     { 
                         System.err.println("Error: Unexpected character '" + yytext() + "'");
-                        //System.exit(1);
                       }
 
 }

@@ -1,4 +1,12 @@
-123abc
-"unterminated string
-"Hello "World"
-@invalidSymbol
+123abc      // Invalid identifier (starts with number)
+my@var      // Invalid identifier (contains special character '@')
+#identifier // Invalid identifier (starts with '#')
+id$entifier // Invalid identifier (contains special character '$')
+"Hello      // Unterminated string
+"multi
+line string // Unterminated string with newline
+/* comment  // Unterminated comment
+/// comment // Invalid comment syntax (wrong use of '/')
+@invalid    // Unexpected character '@'
+a +         // Incomplete operation (missing operand)
+>= <        // Misuse of operators without an operand between them
