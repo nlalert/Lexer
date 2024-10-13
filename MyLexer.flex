@@ -49,8 +49,6 @@ IntegerLiteral     = [0-9]+
 
 /* Identifiers: start with letter, followed by letters or digits */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
-/* Invalid Identifiers: start with a digit followed by letters/digits, or contain non-alphanum characters */
-InvalidIdentifier  = [^a-zA-Z\s\(\)][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";][a-zA-Z0-9]*
 
 /* String literals */
 StringLiteral      = \"{InputCharacter}*\" 
@@ -90,7 +88,7 @@ UnterminatedString = \"{InputCharacter}*
                       }
 
 /* Invalid Identifiers */
-{InvalidIdentifier}   { 
+{IntegerLiteral}{Identifier}   { 
                         System.out.println("Error: invalid identifier: " + yytext());
                       }
 
