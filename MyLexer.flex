@@ -14,13 +14,15 @@ WhiteSpace          = {LineTerminator} | [ \t\f]
 
 /* Comments */
 Comment             = {TraditionalComment} | {EndOfLineComment}
-TraditionalComment  = "/*" [^*]* "*" + "/" 
+TraditionalComment  = "/*" ([^*] | ("*" [^/]) | ("*" "*"))* "*/"
 EndOfLineComment    = "//" [^\n\r]* {LineTerminator}?
 
 /* Identifiers, Literals, and Operators */
 Identifier          = [a-zA-Z][a-zA-Z0-9]*
-UnexpectedCharacter = [^+\-*/=><(); \n\r\t\a\f0-9a-zA-Z\"]+
-InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}.*) | ({UnexpectedCharacter}{Identifier}.*)
+
+// UnexpectedCharacter = [^+\-*/=><(); \n\r\t\a\f0-9a-zA-Z\"]+
+// InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}.*) | ({UnexpectedCharacter}{Identifier}.*)
+
 IntegerLiteral      = [0-9]+
 StringLiteral       = \"{InputCharacter}*\"
 UnterminatedString  = \"{InputCharacter}*
@@ -54,17 +56,20 @@ Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwh
   }
 
   /* Invalid Identifiers: Contains at least one invalid character */
-  {InvalidIdentifier} { 
-    System.out.println("Error: invalid identifier: " + yytext());
-  }
+  // {InvalidIdentifier} { 
+  //   System.out.println("Error: invalid identifier: " + yytext());
+  //   System.exit(1);
+  // }
 
   {IntegerLiteral}{Identifier} {
     System.out.println("Error: invalid identifier: " + yytext());
+    System.exit(1); 
   }
 
-  {UnexpectedCharacter} {
-    System.out.println("Error: Unexpected character: " + yytext());
-  }
+  // {UnexpectedCharacter} {
+  //   System.out.println("Error: Unexpected character: " + yytext());
+  //   System.exit(1);
+  // }
   
   /* Literals */
   {IntegerLiteral} { System.out.println("integer: " + yytext()); }
@@ -73,6 +78,7 @@ Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwh
   /* Unterminated strings */
   {UnterminatedString} { 
     System.err.println("Error: Unterminated string: " + yytext());
+    System.exit(1);
   }
 
   /* Ignore comments and whitespace */
@@ -81,5 +87,6 @@ Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwh
 }
 
 [^] {
-  System.err.println("Error");
+  System.err.println("Error: Unexpected character: " + yytext());
+  System.exit(1);
 }

@@ -16,13 +16,14 @@ read
 4567
 myVar
 variable123
-123variable
+variable@
 123variable456
 another123var
 another_var
 another@var
 another@var_
 @another_var
+!valid123$hack@kmitl.co.th#kmitl
 a_b_c_d_e
 _a_b_c_d_
 @var
