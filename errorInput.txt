@@ -1,0 +1,4 @@
+123abc
+"unterminated string
+"Hello "World"
+@invalidSymbol

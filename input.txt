@@ -16,7 +16,6 @@ read
 4567
 myVar
 variable123
-another_var
 a1b2c3
 id1
 id1  // ทดสอบการตรวจสอบว่า identifier มีใน symbol table แล้ว
@@ -41,8 +40,6 @@ while a <= 10 do
   read a;
   a = a + 1;
 endwhile
-
-
 "Hello "World"
 "unterminated string
 //@invalidSymbol

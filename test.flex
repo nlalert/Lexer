@@ -93,7 +93,7 @@ UnterminatedString = \"{InputCharacter}*{LineTerminator}
 /* Invalid Identifiers */
 {InvalidIdentifier}   { 
                         System.out.println("Error: invalid identifier: " + yytext());
-                        //System.exit(1);
+                        System.exit(1);
                       }
 
 /* String Literals */
@@ -102,13 +102,13 @@ UnterminatedString = \"{InputCharacter}*{LineTerminator}
 /* Unterminated Strings */
 {UnterminatedString}  { 
                         System.err.println("Error: Unterminated string: " + yytext());
-                        //System.exit(1);
+                        System.exit(1);
                       }
 
 /* Fallback for unexpected characters */
 [^]                     { 
                         System.err.println("Error: Unexpected character '" + yytext() + "'");
-                        //System.exit(1);
+                        System.exit(1);
                       }
 
 }
