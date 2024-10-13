@@ -12,12 +12,6 @@
 /* Line terminators */
 LineTerminator     = \r|\n|\r\n
 
-/* Escape sequences within strings */
-EscapeSequence     = "\\"["btnrf\'\"\\"]
-
-/* Characters allowed inside strings */
-InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
-
 /* Whitespace characters to ignore */
 WhiteSpace         = {LineTerminator} | [ \t\f]
 
@@ -50,11 +44,14 @@ IntegerLiteral     = [0-9]+
 /* Identifiers: start with letter, followed by letters or digits */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
 
+/* Characters allowed inside strings */
+InputCharacter = [^\\\"\n\r] | "\\"[^\"]
+
 /* String literals */
-StringLiteral      = \"{InputCharacter}*\" 
+StringLiteral      = "\"" ({InputCharacter} | "\\\"" )* "\""
 
 /* Unterminated string literals */
-UnterminatedString = \"{InputCharacter}*
+UnterminatedString = "\"" ({InputCharacter} | "\\\"" )*
 
 %%
 
