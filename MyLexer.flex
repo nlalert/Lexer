@@ -13,7 +13,7 @@
 LineTerminator     = \r|\n|\r\n
 
 /* Escape sequences within strings */
-EscapeSequence     = "\\"["btnrf'\"\\"]
+EscapeSequence     = "\\"["btnrf\'\"\\"]
 
 /* Characters allowed inside strings */
 InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
