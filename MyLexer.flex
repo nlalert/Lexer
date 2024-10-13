@@ -8,8 +8,7 @@
 %}
 
 LineTerminator     = \r|\n|\r\n
-EscapeSequence     = "\\"["btnrf\'\"\\"]
-InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
+InputCharacter     = [^\\\"\n\r] | "\\"[^\"]
 WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
@@ -20,8 +19,8 @@ Comment            = {TraditionalComment} | {EndOfLineComment}
 /* Identifiers, Literals, and Operators */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
 IntegerLiteral     = [0-9]+
-StringLiteral      = \"({InputCharacter}|\\)*\"
-UnterminatedString = \"({InputCharacter}|\\)*
+StringLiteral      = "\"" ({InputCharacter} | "\\" )* "\""
+UnterminatedString = "\"" ({InputCharacter} | "\\" )*
 
 Operator            = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
 Parenthesis         = "(" | ")"
