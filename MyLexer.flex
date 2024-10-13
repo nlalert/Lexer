@@ -7,26 +7,28 @@
   java.util.HashSet<String> identifiers = new java.util.HashSet<>();
 %}
 
-LineTerminator     = \r|\n|\r\n
-EscapeSequence     = "\\"["btnrf\'\"\\"]
-InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
-WhiteSpace         = {LineTerminator} | [ \t\f]
+LineTerminator      = \r|\n|\r\n
+EscapeSequence      = "\\"["btnrf\'\"\\"]
+InputCharacter      = [^\\\"\n\r] | {EscapeSequence}
+WhiteSpace          = {LineTerminator} | [ \t\f]
 
 /* Comments */
-Comment            = {TraditionalComment} | {EndOfLineComment}
-TraditionalComment = "/*" [^*]* "*" + "/" 
-EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
+Comment             = {TraditionalComment} | {EndOfLineComment}
+TraditionalComment  = "/*" [^*]* "*" + "/" 
+EndOfLineComment    = "//" [^\n\r]* {LineTerminator}?
 
 /* Identifiers, Literals, and Operators */
-Identifier         = [:jletter:][:jletterdigit:]*
-IntegerLiteral     = [0-9]+
-StringLiteral      = \"{InputCharacter}*\"
-UnterminatedString = \"{InputCharacter}*
+Identifier          = [a-zA-Z][a-zA-Z0-9]*
+UnexpectedCharacter = [^+\-*/=><(); \n\r\t\a\f0-9a-zA-Z\"]+
+InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}{Identifier}) | ({Identifier}{UnexpectedCharacter}) | ({UnexpectedCharacter}{Identifier})
+IntegerLiteral      = [0-9]+
+StringLiteral       = \"{InputCharacter}*\"
+UnterminatedString  = \"{InputCharacter}*
 
-Operator           = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
-Parenthesis        = "(" | ")"
-Semicolon          = ";"
-Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
+Operator            = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
+Parenthesis         = "(" | ")"
+Semicolon           = ";"
+Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
 
 %%
 
@@ -51,9 +53,17 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
     }
   }
 
+  /* Invalid Identifiers: Contains at least one invalid character */
+  {InvalidIdentifier} { 
+    System.out.println("Error: invalid identifier: " + yytext());
+  }
+
   {IntegerLiteral}{Identifier} {
     System.out.println("Error: invalid identifier: " + yytext());
-    System.exit(1);
+  }
+
+  {UnexpectedCharacter} {
+    System.out.println("Error: Unexpected character: " + yytext());
   }
   
   /* Literals */
@@ -63,7 +73,6 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   /* Unterminated strings */
   {UnterminatedString} { 
     System.err.println("Error: Unterminated string: " + yytext());
-    System.exit(1);
   }
 
   /* Ignore comments and whitespace */
@@ -71,8 +80,6 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   {WhiteSpace}     { /* Ignore */ }
 }
 
-/* Fallback for unexpected characters */
-[^]                { 
-  System.err.println("Error: Unexpected character '" + yytext() + "'");
-  System.exit(1);
+[^] {
+  System.err.println("Error");
 }

@@ -16,7 +16,12 @@ read
 4567
 myVar
 variable123
+123variable
 another_var
+another@var
+@var
+var@
+_ @ "another@var" "@"
 a1b2c3
 id1
 id1  // ทดสอบการตรวจสอบว่า identifier มีใน symbol table แล้ว
@@ -32,6 +37,7 @@ id1  // ทดสอบการตรวจสอบว่า identifier มี
 //)
 /* Another comment here */
 // Line comment here
+
 A + B
 if (a > b) then
   print "Hello, World!";
