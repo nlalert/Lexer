@@ -2,14 +2,15 @@ INPUT ?= input.txt
 
 all: run
 
-run: TermProjectLexer.java Main.class
+run: TermProjectLexer.class Main.class
 	@java Main $(INPUT) || true
 
 Main.class: Main.java
 	@javac Main.java
 
-TermProjectLexer.java: MyLexer.flex
+TermProjectLexer.class: MyLexer.flex
 	@jflex -q MyLexer.flex
+	@javac TermProjectLexer.java
 
 clean:
 	@rm -f *.java~ *.class

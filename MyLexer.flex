@@ -14,8 +14,9 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
 Comment            = {TraditionalComment} | {EndOfLineComment}
-TraditionalComment = "/*" [^*]* "*" + "/" 
 EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
+TraditionalComment = "/*" ( [^*] | "*"[^/] )* "*/"
+UnterminatedComment = "/*" ( [^*] | "*"[^/] )*
 
 /* Identifiers, Literals, and Operators */
 Identifier         = [:jletterdigit:]+
@@ -66,8 +67,13 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   }
 
   /* Ignore comments and whitespace */
-  {Comment}        { /* Ignore */ }
   {WhiteSpace}     { /* Ignore */ }
+  {Comment}        { /* Ignore */ }
+
+  {UnterminatedComment} {
+    System.err.println("Error: Unterminated comment: " + yytext());
+    System.exit(1);
+  }
 }
 
 /* Fallback for unexpected characters */

@@ -302,8 +302,8 @@ public class TermProjectLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\1\2\1\4\1\5\4\6"+
-    "\1\7\1\10\1\6\10\1\1\11\2\0\1\2\1\12"+
-    "\7\1\1\0\12\1";
+    "\1\7\1\10\1\6\10\1\1\11\1\0\1\12\1\2"+
+    "\1\13\7\1\1\0\12\1";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[45];
@@ -384,15 +384,15 @@ public class TermProjectLexer {
     "\1\2\13\0\1\2\4\0\6\2\1\47\11\2\13\0"+
     "\1\2\4\0\1\50\17\2\13\0\1\2\4\0\3\2"+
     "\1\51\14\2\13\0\1\2\4\0\6\2\1\52\10\2"+
-    "\10\0\1\43\2\0\1\3\24\0\1\2\13\0\1\2"+
-    "\4\0\3\2\1\33\14\2\13\0\1\2\4\0\6\2"+
-    "\1\21\7\2\1\26\1\2\13\0\1\2\4\0\7\2"+
-    "\1\53\10\2\13\0\1\2\4\0\10\2\1\54\7\2"+
-    "\13\0\1\2\4\0\2\2\1\33\15\2\13\0\1\2"+
-    "\4\0\10\2\1\33\7\2\13\0\1\2\4\0\7\2"+
-    "\1\44\10\2\13\0\1\2\4\0\6\2\1\55\11\2"+
-    "\13\0\1\2\4\0\15\2\1\33\2\2\13\0\1\2"+
-    "\4\0\10\2\1\44\6\2";
+    "\13\31\1\3\24\31\1\2\13\0\1\2\4\0\3\2"+
+    "\1\33\14\2\13\0\1\2\4\0\6\2\1\21\7\2"+
+    "\1\26\1\2\13\0\1\2\4\0\7\2\1\53\10\2"+
+    "\13\0\1\2\4\0\10\2\1\54\7\2\13\0\1\2"+
+    "\4\0\2\2\1\33\15\2\13\0\1\2\4\0\10\2"+
+    "\1\33\7\2\13\0\1\2\4\0\7\2\1\44\10\2"+
+    "\13\0\1\2\4\0\6\2\1\55\11\2\13\0\1\2"+
+    "\4\0\15\2\1\33\2\2\13\0\1\2\4\0\10\2"+
+    "\1\44\6\2";
 
   private static int [] zzUnpacktrans() {
     int [] result = new int[1248];
@@ -439,7 +439,7 @@ public class TermProjectLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\1\1\2\11\2\1\2\11\4\1\1\11\11\1"+
-    "\1\11\2\0\11\1\1\0\12\1";
+    "\1\11\1\0\12\1\1\0\12\1";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[45];
@@ -890,54 +890,60 @@ public class TermProjectLexer {
     }
             }
           // fall through
-          case 11: break;
+          case 12: break;
           case 2:
             { /* Ignore */
             }
           // fall through
-          case 12: break;
+          case 13: break;
           case 3:
             { System.err.println("Error: Unexpected character '" + yytext() + "'");
   System.exit(1);
             }
           // fall through
-          case 13: break;
+          case 14: break;
           case 4:
             { System.err.println("Error: Unterminated string: " + yytext());
     System.exit(1);
             }
           // fall through
-          case 14: break;
+          case 15: break;
           case 5:
             { System.out.println("parenthesis: " + yytext());
             }
           // fall through
-          case 15: break;
+          case 16: break;
           case 6:
             { System.out.println("operator: " + yytext());
             }
           // fall through
-          case 16: break;
+          case 17: break;
           case 7:
             { System.out.println("integer: " + yytext());
             }
           // fall through
-          case 17: break;
+          case 18: break;
           case 8:
             { System.out.println("semicolon: " + yytext());
             }
           // fall through
-          case 18: break;
+          case 19: break;
           case 9:
             { System.out.println("string: " + yytext());
             }
           // fall through
-          case 19: break;
+          case 20: break;
           case 10:
+            { System.err.println("Error: Unterminated comment: " + yytext());
+    System.exit(1);
+            }
+          // fall through
+          case 21: break;
+          case 11:
             { System.out.println("keyword: " + yytext());
             }
           // fall through
-          case 20: break;
+          case 22: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

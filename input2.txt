@@ -1,0 +1,21 @@
+x = 10 - 002
+y="abc"+"def"
+
+if (a >= b) then
+    print "a is greater than or equal to b";
+endif
+
+ifelse = x++;
+
+x1
+x2x3
+"\\"
+"\n"
+"\\n"
+
+xyz // asdasd 
+// ""
+// /*
+/*/**/
+/****a*/
+/*"\"*/
