@@ -692,7 +692,8 @@ public class TermProjectLexer {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { System.err.println("Error: Unexpected character '" + yytext() + "'");
-                        //System.exit(1);
+                        // Continue to next token without exiting
+                        return 0;
             }
           // fall through
           case 13: break;
@@ -702,27 +703,27 @@ public class TermProjectLexer {
           // fall through
           case 14: break;
           case 3:
-            { System.out.println("left parenthesis: " + yytext());
+            { System.out.println("left parenthesis: " + yytext()); return 0;
             }
           // fall through
           case 15: break;
           case 4:
-            { System.out.println("right parenthesis: " + yytext());
+            { System.out.println("right parenthesis: " + yytext()); return 0;
             }
           // fall through
           case 16: break;
           case 5:
-            { System.out.println("operator: " + yytext());
+            { System.out.println("operator: " + yytext()); return 0;
             }
           // fall through
           case 17: break;
           case 6:
-            { System.out.println("integer: " + yytext());
+            { System.out.println("integer: " + yytext()); return 0;
             }
           // fall through
           case 18: break;
           case 7:
-            { System.out.println("semicolon: " + yytext());
+            { System.out.println("semicolon: " + yytext()); return 0;
             }
           // fall through
           case 19: break;
@@ -732,28 +733,31 @@ public class TermProjectLexer {
                         } else {
                           System.out.println("identifier \"" + yytext() + "\" already in symbol table");
                         }
+                        return 0;
             }
           // fall through
           case 20: break;
           case 9:
             { System.err.println("Error: Unterminated string: " + yytext());
-                        //System.exit(1);
+                        // Continue to next token without exiting
+                        return 0;
             }
           // fall through
           case 21: break;
           case 10:
-            { System.out.println("string: " + yytext());
+            { System.out.println("string: " + yytext()); return 0;
             }
           // fall through
           case 22: break;
           case 11:
             { System.out.println("Error: invalid identifier: " + yytext());
-                        //System.exit(1);
+                        // Continue to next token without exiting
+                        return 0;
             }
           // fall through
           case 23: break;
           case 12:
-            { System.out.println("keyword: " + yytext());
+            { System.out.println("keyword: " + yytext()); return 0;
             }
           // fall through
           case 24: break;

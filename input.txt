@@ -40,7 +40,3 @@ while a <= 10 do
   read a;
   a = a + 1;
 endwhile
-"Hello "World"
-"unterminated string
-//@invalidSymbol
-//123abc

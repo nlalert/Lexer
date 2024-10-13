@@ -692,7 +692,6 @@ public class TermProjectLexer {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { System.err.println("Error: Unexpected character '" + yytext() + "'");
-                        //System.exit(1);
             }
           // fall through
           case 13: break;
@@ -737,7 +736,6 @@ public class TermProjectLexer {
           case 20: break;
           case 9:
             { System.err.println("Error: Unterminated string: " + yytext());
-                        //System.exit(1);
             }
           // fall through
           case 21: break;
@@ -748,7 +746,6 @@ public class TermProjectLexer {
           case 22: break;
           case 11:
             { System.out.println("Error: invalid identifier: " + yytext());
-                        //System.exit(1);
             }
           // fall through
           case 23: break;

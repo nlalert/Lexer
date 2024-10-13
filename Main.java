@@ -8,8 +8,11 @@ public class Main {
                 FileReader reader = new FileReader("errorInput.txt");
                 TermProjectLexer lexer = new TermProjectLexer(reader);
                 
-                while (lexer.yylex() != -1) {
-                    // Lexer จะอ่าน token ไปเรื่อยๆ จนกว่าจะสิ้นสุดไฟล์
+                while (true) {
+                    int token = lexer.yylex();
+                    if (token == -1) {
+                        break; // End of input
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
