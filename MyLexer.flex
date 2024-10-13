@@ -13,9 +13,9 @@ InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
 WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
-Comment            = {TraditionalComment} | {EndOfLineComment}
 TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
 EndOfLineComment   = "//".*
+Comment            = {TraditionalComment} | {EndOfLineComment}
 
 /* Identifiers, Literals, and Operators */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
@@ -23,12 +23,10 @@ IntegerLiteral     = [0-9]+
 StringLiteral      = \"{InputCharacter}*\"
 UnterminatedString = \"{InputCharacter}*
 
-Operator           = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
-Parenthesis        = "(" | ")"
-Semicolon          = ";"
-Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
-UnexpectedCharacter = [^a-zA-Z0-9+\-*/=(){}; \t\r\n\f]
-InvalidIdentifier = [a-zA-Z0-9]*{UnexpectedCharacter}+[a-zA-Z0-9]*({UnexpectedCharacter}*[a-zA-Z0-9]*)*
+Operator            = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
+Parenthesis         = "(" | ")"
+Semicolon           = ";"
+Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
 
 %%
 
@@ -53,16 +51,6 @@ InvalidIdentifier = [a-zA-Z0-9]*{UnexpectedCharacter}+[a-zA-Z0-9]*({UnexpectedCh
     }
   }
 
-  {UnexpectedCharacter} {
-     System.err.println("Error: Unexpected character: " + yytext());
-    //  System.exit(1);
-  }
-  
-  {InvalidIdentifier} {
-    System.out.println("Error: invalid identifier: " + yytext());
-    // System.exit(1);
-  }
-
   {IntegerLiteral}{Identifier} {
     System.out.println("Error: invalid identifier: " + yytext());
     System.exit(1);
@@ -85,6 +73,6 @@ InvalidIdentifier = [a-zA-Z0-9]*{UnexpectedCharacter}+[a-zA-Z0-9]*({UnexpectedCh
 
 /* Fallback for unexpected characters */
 [^]                { 
-  System.err.println("Error");
+  System.err.println("Error: Unexpected character: " + yytext());
   System.exit(1);
 }
