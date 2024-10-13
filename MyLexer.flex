@@ -18,7 +18,7 @@ TraditionalComment = "/*" [^*]* "*" + "/"
 EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
 
 /* Identifiers, Literals, and Operators */
-Identifier         = [:jletter:][:jletterdigit:]*
+Identifier         = [:jletterdigit:]+
 IntegerLiteral     = [0-9]+
 StringLiteral      = \"{InputCharacter}*\"
 UnterminatedString = \"{InputCharacter}*
@@ -42,23 +42,22 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   {Parenthesis}    { System.out.println("parenthesis: " + yytext()); }
   {Semicolon}      { System.out.println("semicolon: " + yytext()); }
 
-  /* Identifiers */
-  {Identifier}     { 
-    if (identifiers.add(yytext())) {
-      System.out.println("new identifier: " + yytext());
-    } else {
-      System.out.println("identifier \"" + yytext() + "\" already in symbol table");
-    }
-  }
-
-  {IntegerLiteral}{Identifier} {
-    System.out.println("Error: invalid identifier: " + yytext());
-    System.exit(1);
-  }
-  
   /* Literals */
   {IntegerLiteral} { System.out.println("integer: " + yytext()); }
   {StringLiteral}  { System.out.println("string: " + yytext()); }
+
+  /* Identifiers */
+  {Identifier}     {
+    String text = yytext();
+    if (Character.isDigit(text.charAt(0)) || text.contains("_")) {
+        System.err.println("Error: invalid identifier : " + text);
+        System.exit(1);
+    } else if (identifiers.add(text)) {
+        System.out.println("new identifier: " + text);
+    } else {
+        System.out.println("identifier \"" + text + "\" already in symbol table");
+    }
+  }
 
   /* Unterminated strings */
   {UnterminatedString} { 
