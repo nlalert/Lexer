@@ -23,10 +23,10 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
 /* Traditional (multi-line) comments */
-TraditionalComment = "/*" [^*]* "*" + "/"
+TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
 
 /* End-of-line (single-line) comments */
-EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
+EndOfLineComment   = "//".*
 
 /* Combined comment rule */
 Comment            = {TraditionalComment} | {EndOfLineComment}
@@ -51,7 +51,7 @@ IntegerLiteral     = [0-9]+
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
 
 /* Invalid Identifiers: start with a digit followed by letters/digits, or contain non-alphanum characters */
-InvalidIdentifier  = [0-9][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";]
+InvalidIdentifier  = [0-9][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\"";]
 
 /* String literals */
 StringLiteral      = \"{InputCharacter}*\" 
@@ -106,7 +106,7 @@ UnterminatedString = \"{InputCharacter}*{LineTerminator}
                       }
 
 /* Fallback for unexpected characters */
-[^]                     { 
+.                     { 
                         System.err.println("Error: Unexpected character '" + yytext() + "'");
                         System.exit(1);
                       }

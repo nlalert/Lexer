@@ -23,10 +23,10 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
 /* Traditional (multi-line) comments */
-TraditionalComment = "/*" [^*]* "*" + "/"
+TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
 
 /* End-of-line (single-line) comments */
-EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
+EndOfLineComment   = "//".*
 
 /* Combined comment rule */
 Comment            = {TraditionalComment} | {EndOfLineComment}
@@ -50,7 +50,7 @@ IntegerLiteral     = [0-9]+
 /* Identifiers: start with letter, followed by letters or digits */
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
 /* Invalid Identifiers: start with a digit followed by letters/digits, or contain non-alphanum characters */
-InvalidIdentifier  = [^a-zA-Z\s][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";][a-zA-Z0-9]*
+InvalidIdentifier  = [^a-zA-Z\s\(\)][a-zA-Z0-9]+ | [a-zA-Z][a-zA-Z0-9]*[^a-zA-Z0-9\s\(\)\+\-\*\=\/\<\>\";][a-zA-Z0-9]*
 
 /* String literals */
 StringLiteral      = \"{InputCharacter}*\" 
