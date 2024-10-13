@@ -20,7 +20,7 @@ EndOfLineComment    = "//" [^\n\r]* {LineTerminator}?
 /* Identifiers, Literals, and Operators */
 Identifier          = [a-zA-Z][a-zA-Z0-9]*
 UnexpectedCharacter = [^+\-*/=><(); \n\r\t\a\f0-9a-zA-Z\"]+
-InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}{Identifier}) | ({Identifier}{UnexpectedCharacter}) | ({UnexpectedCharacter}{Identifier})
+InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}.*) | ({UnexpectedCharacter}{Identifier}.*)
 IntegerLiteral      = [0-9]+
 StringLiteral       = \"{InputCharacter}*\"
 UnterminatedString  = \"{InputCharacter}*
