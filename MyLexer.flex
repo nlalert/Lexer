@@ -18,6 +18,7 @@ WhiteSpace         = {LineTerminator} | [ \t\f]
 /* Comments */
 /* Traditional (multi-line) comments */
 TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
+UnterminatedComment= "/*"([^*]|\*+[^*/])*
 
 /* End-of-line (single-line) comments */
 EndOfLineComment   = "//".*
@@ -45,7 +46,7 @@ IntegerLiteral     = [0-9]+
 Identifier         = [a-zA-Z][a-zA-Z0-9]*
 
 /* Characters allowed inside strings */
-InputCharacter = [^\\\"\n\r] | "\\"[^\"]
+InputCharacter    = [^\\\"\n\r] | "\\"[^\"]
 
 /* String literals */
 StringLiteral      = "\"" ({InputCharacter} | "\\\"" )* "\""
@@ -96,7 +97,9 @@ UnterminatedString = "\"" ({InputCharacter} | "\\\"" )*
 {UnterminatedString}  { 
                         System.err.println("Error: Unterminated string: " + yytext());
                       }
-
+{UnterminatedComment}   { 
+                        System.err.println("Error: Unterminated comment: " + yytext());
+                      }
 /* Fallback for unexpected characters */
 [^]                     { 
                         System.err.println("Error: Unexpected character '" + yytext() + "'");
