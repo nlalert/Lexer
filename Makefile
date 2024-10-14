@@ -4,10 +4,16 @@ lexer ?= KiwiLexer.lex
 
 generate:
 	jflex $(lexer)
+	javac TermProjectLexer.java
 
 run: generate
-	java TermProjectLexer.java $(input) > $(output)
-	make clean
+	java TermProjectLexer $(input) > $(output)
+	rm TermProjectLexer.java~
+
+test:
+	python3 test.py
 
 clean:
+	rm TermProjectLexer.java
 	rm TermProjectLexer.java~
+	rm *.class
