@@ -4,7 +4,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
-            FileReader reader = new FileReader("input.txt");
+            FileReader reader = new FileReader("input_Bom.txt");
             TermProjectLexer lexer = new TermProjectLexer(reader);
             
             while (lexer.yylex() != -1) {

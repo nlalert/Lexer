@@ -9,13 +9,13 @@
 
 LineTerminator      = \r|\n|\r\n
 EscapeSequence      = "\\"["btnrf\'\"\\"]
-InputCharacter      = [^\\\"\n\r] | {EscapeSequence}
+InputCharacter      = [^\\\"\n\r] | "\\"[^\"]
 WhiteSpace          = {LineTerminator} | [ \t\f]
 
 /* Comments */
 Comment             = {TraditionalComment} | {EndOfLineComment}
-TraditionalComment  = "/*" ([^*] | ("*" [^/]) | ("*" "*"))* "*/"
-EndOfLineComment    = "//" [^\n\r]* {LineTerminator}?
+TraditionalComment  = "/*"([^*]|\*+[^*/])*\*+"/"
+EndOfLineComment    = "//".*
 
 /* Identifiers, Literals, and Operators */
 Identifier          = [a-zA-Z][a-zA-Z0-9]*
@@ -24,8 +24,8 @@ Identifier          = [a-zA-Z][a-zA-Z0-9]*
 // InvalidIdentifier   = ({Identifier}{UnexpectedCharacter}.*) | ({UnexpectedCharacter}{Identifier}.*)
 
 IntegerLiteral      = [0-9]+
-StringLiteral       = \"{InputCharacter}*\"
-UnterminatedString  = \"{InputCharacter}*
+StringLiteral       = "\"" ({InputCharacter} | "\\" )* "\""
+UnterminatedString  = "\"" ({InputCharacter} | "\\" )*
 
 Operator            = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
 Parenthesis         = "(" | ")"
