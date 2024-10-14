@@ -9,14 +9,14 @@
 
 LineTerminator     = \r|\n|\r\n
 EscapeSequence     = "\\"["btnrf\'\"\\"]
-InputCharacter     = [^\\\"\n\r] | {EscapeSequence}
+InputCharacter     = [^\"\n\r] | {EscapeSequence}
 WhiteSpace         = {LineTerminator} | [ \t\f]
 
 /* Comments */
 Comment            = {TraditionalComment} | {EndOfLineComment}
 EndOfLineComment   = "//" [^\n\r]* {LineTerminator}?
-TraditionalComment = "/*" ( [^*] | "*"[^/] )* "*/"
-UnterminatedComment = "/*" ( [^*] | "*"[^/] )*
+TraditionalComment = "/*" ([^*] | "*"+ [^*/])* "*"+ "/"
+UnterminatedComment = "/*" ([^*] | "*"+ [^*/])*
 
 /* Identifiers, Literals, and Operators */
 Identifier         = [:jletterdigit:]+
@@ -71,7 +71,8 @@ Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhi
   {Comment}        { /* Ignore */ }
 
   {UnterminatedComment} {
-    System.err.println("Error: Unterminated comment: " + yytext());
+    String text = yytext().split("[\r\n]+")[0];
+    System.err.println("Error: Unterminated comment: " + text);
     System.exit(1);
   }
 }
