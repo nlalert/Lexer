@@ -95,10 +95,10 @@ public class TermProjectLexer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\1\3\1\4\1\5\4\6\1\7"+
     "\1\10\1\6\11\11\1\12\1\0\1\13\1\2\1\14"+
-    "\1\15\7\11\1\0\12\11";
+    "\7\11\1\0\7\11\1\13\2\11\1\13\1\11\1\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[47];
+    int [] result = new int[49];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -126,12 +126,13 @@ public class TermProjectLexer {
     "\0\0\0\41\0\41\0\102\0\143\0\41\0\41\0\41"+
     "\0\204\0\245\0\306\0\347\0\41\0\u0108\0\u0129\0\u014a"+
     "\0\u016b\0\u018c\0\u01ad\0\u01ce\0\u01ef\0\u0210\0\u0231\0\41"+
-    "\0\u0252\0\u0273\0\u0294\0\u02b5\0\u0129\0\u02d6\0\u02f7\0\u0318"+
+    "\0\u0252\0\u0273\0\u0294\0\u0129\0\u02b5\0\u02d6\0\u02f7\0\u0318"+
     "\0\u0339\0\u035a\0\u037b\0\u039c\0\u03bd\0\u03de\0\u03ff\0\u0420"+
-    "\0\u0441\0\u0462\0\u0483\0\u04a4\0\u04c5\0\u04e6\0\u0507";
+    "\0\u0441\0\u0462\0\u0483\0\u04a4\0\u04c5\0\u04e6\0\u0507\0\u0528"+
+    "\0\u0273";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[47];
+    int [] result = new int[49];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -160,39 +161,39 @@ public class TermProjectLexer {
     "\1\17\1\24\1\25\1\17\1\26\1\27\43\0\1\3"+
     "\36\0\2\5\1\0\2\5\1\0\1\30\13\5\1\31"+
     "\16\5\12\0\1\10\41\0\1\10\36\0\1\32\2\0"+
-    "\1\33\41\0\1\14\3\0\1\34\1\0\16\34\20\0"+
+    "\1\33\41\0\1\14\3\0\1\17\1\0\16\17\20\0"+
     "\1\10\35\0\1\17\3\0\1\17\1\0\16\17\15\0"+
-    "\1\17\3\0\1\17\1\0\10\17\1\35\5\17\15\0"+
-    "\1\17\3\0\1\17\1\0\6\17\1\36\1\37\6\17"+
-    "\15\0\1\17\3\0\1\17\1\0\3\17\1\35\12\17"+
-    "\15\0\1\17\3\0\1\17\1\0\2\17\1\40\13\17"+
-    "\15\0\1\17\3\0\1\17\1\0\12\17\1\41\3\17"+
-    "\15\0\1\17\3\0\1\17\1\0\2\17\1\42\13\17"+
+    "\1\17\3\0\1\17\1\0\10\17\1\34\5\17\15\0"+
+    "\1\17\3\0\1\17\1\0\6\17\1\35\1\36\6\17"+
+    "\15\0\1\17\3\0\1\17\1\0\3\17\1\34\12\17"+
+    "\15\0\1\17\3\0\1\17\1\0\2\17\1\37\13\17"+
+    "\15\0\1\17\3\0\1\17\1\0\12\17\1\40\3\17"+
+    "\15\0\1\17\3\0\1\17\1\0\2\17\1\41\13\17"+
+    "\15\0\1\17\3\0\1\17\1\0\4\17\1\42\11\17"+
     "\15\0\1\17\3\0\1\17\1\0\4\17\1\43\11\17"+
-    "\15\0\1\17\3\0\1\17\1\0\4\17\1\44\11\17"+
-    "\41\5\11\32\1\45\27\32\2\33\4\0\33\33\15\0"+
-    "\1\34\3\0\1\34\1\0\16\34\15\0\1\17\3\0"+
-    "\1\17\1\0\13\17\1\46\2\17\15\0\1\17\3\0"+
-    "\1\17\1\0\1\17\1\47\14\17\15\0\1\17\3\0"+
-    "\1\17\1\0\15\17\1\50\15\0\1\17\3\0\1\17"+
-    "\1\0\5\17\1\51\10\17\15\0\1\17\3\0\1\17"+
-    "\1\0\1\52\15\17\15\0\1\17\3\0\1\17\1\0"+
-    "\2\17\1\53\13\17\15\0\1\17\3\0\1\17\1\0"+
-    "\5\17\1\54\10\17\11\32\1\45\2\32\1\3\24\32"+
-    "\15\0\1\17\3\0\1\17\1\0\2\17\1\35\13\17"+
-    "\15\0\1\17\3\0\1\17\1\0\5\17\1\22\7\17"+
-    "\1\27\15\0\1\17\3\0\1\17\1\0\6\17\1\55"+
-    "\7\17\15\0\1\17\3\0\1\17\1\0\7\17\1\56"+
-    "\6\17\15\0\1\17\3\0\1\17\1\0\1\17\1\35"+
-    "\14\17\15\0\1\17\3\0\1\17\1\0\7\17\1\35"+
-    "\6\17\15\0\1\17\3\0\1\17\1\0\6\17\1\46"+
-    "\7\17\15\0\1\17\3\0\1\17\1\0\5\17\1\57"+
-    "\10\17\15\0\1\17\3\0\1\17\1\0\14\17\1\35"+
-    "\1\17\15\0\1\17\3\0\1\17\1\0\7\17\1\46"+
-    "\6\17";
+    "\2\5\4\0\33\5\11\32\1\44\27\32\2\33\1\3"+
+    "\2\33\1\4\33\33\15\0\1\17\3\0\1\17\1\0"+
+    "\13\17\1\45\2\17\15\0\1\17\3\0\1\17\1\0"+
+    "\1\17\1\46\14\17\15\0\1\17\3\0\1\17\1\0"+
+    "\15\17\1\47\15\0\1\17\3\0\1\17\1\0\5\17"+
+    "\1\50\10\17\15\0\1\17\3\0\1\17\1\0\1\51"+
+    "\15\17\15\0\1\17\3\0\1\17\1\0\2\17\1\52"+
+    "\13\17\15\0\1\17\3\0\1\17\1\0\5\17\1\53"+
+    "\10\17\11\32\1\54\2\32\1\3\24\32\15\0\1\17"+
+    "\3\0\1\17\1\0\2\17\1\34\13\17\15\0\1\17"+
+    "\3\0\1\17\1\0\5\17\1\22\7\17\1\27\15\0"+
+    "\1\17\3\0\1\17\1\0\6\17\1\55\7\17\15\0"+
+    "\1\17\3\0\1\17\1\0\7\17\1\56\6\17\15\0"+
+    "\1\17\3\0\1\17\1\0\1\17\1\34\14\17\15\0"+
+    "\1\17\3\0\1\17\1\0\7\17\1\34\6\17\15\0"+
+    "\1\17\3\0\1\17\1\0\6\17\1\45\7\17\11\32"+
+    "\1\57\27\32\15\0\1\17\3\0\1\17\1\0\5\17"+
+    "\1\60\10\17\15\0\1\17\3\0\1\17\1\0\14\17"+
+    "\1\34\1\17\11\32\1\57\2\32\1\61\24\32\15\0"+
+    "\1\17\3\0\1\17\1\0\7\17\1\45\6\17";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[1320];
+    int [] result = new int[1353];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -236,10 +237,10 @@ public class TermProjectLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\2\11\2\1\3\11\4\1\1\11\12\1\1\11"+
-    "\1\0\13\1\1\0\12\1";
+    "\1\0\12\1\1\0\15\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[47];
+    int [] result = new int[49];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -319,6 +320,7 @@ public class TermProjectLexer {
   private boolean zzEOFDone;
 
   /* user code: */
+  /* Symbol Table */
   java.util.HashSet<String> identifiers = new java.util.HashSet<>();
 
 
@@ -677,73 +679,76 @@ public class TermProjectLexer {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { System.err.println("Error: Unexpected character '" + yytext() + "'");
+  System.exit(1);
             }
           // fall through
-          case 14: break;
+          case 13: break;
           case 2:
             { /* Ignore */
             }
           // fall through
-          case 15: break;
+          case 14: break;
           case 3:
             { System.err.println("Error: Unterminated string: " + yytext());
+    System.exit(1);
             }
           // fall through
-          case 16: break;
+          case 15: break;
           case 4:
             { System.out.println("left parenthesis: " + yytext());
             }
           // fall through
-          case 17: break;
+          case 16: break;
           case 5:
             { System.out.println("right parenthesis: " + yytext());
             }
           // fall through
-          case 18: break;
+          case 17: break;
           case 6:
             { System.out.println("operator: " + yytext());
             }
           // fall through
-          case 19: break;
+          case 18: break;
           case 7:
             { System.out.println("integer: " + yytext());
             }
           // fall through
-          case 20: break;
+          case 19: break;
           case 8:
             { System.out.println("semicolon: " + yytext());
             }
           // fall through
-          case 21: break;
+          case 20: break;
           case 9:
-            { if (identifiers.add(yytext())) {
-                          System.out.println("new identifier: " + yytext());
-                        } else {
-                          System.out.println("identifier \"" + yytext() + "\" already in symbol table");
-                        }
+            { String text = yytext();
+    if (Character.isDigit(text.charAt(0))) {
+        System.err.println("Error: invalid identifier : " + text);
+        System.exit(1);
+    } else if (identifiers.add(text)) {
+        System.out.println("new identifier: " + text);
+    } else {
+        System.out.println("identifier \"" + text + "\" already in symbol table");
+    }
             }
           // fall through
-          case 22: break;
+          case 21: break;
           case 10:
             { System.out.println("string: " + yytext());
             }
           // fall through
-          case 23: break;
+          case 22: break;
           case 11:
-            { System.err.println("Error: Unterminated comment: " + yytext());
+            { String text = yytext().split("[\r\n]+")[0];
+    System.err.println("Error: Unterminated comment: " + text);
+    System.exit(1);
             }
           // fall through
-          case 24: break;
+          case 23: break;
           case 12:
-            { System.out.println("Error: invalid identifier: " + yytext());
-            }
-          // fall through
-          case 25: break;
-          case 13:
             { System.out.println("keyword: " + yytext());
             }
           // fall through
-          case 26: break;
+          case 24: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

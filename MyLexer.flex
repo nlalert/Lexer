@@ -2,107 +2,89 @@
 %public
 %class TermProjectLexer
 %standalone
+%unicode
 
 %{
+  /* Symbol Table */
   java.util.HashSet<String> identifiers = new java.util.HashSet<>();
 %}
 
-/* Definitions */
-
-/* Line terminators */
-LineTerminator     = \r|\n|\r\n
-
-/* Whitespace characters to ignore */
-WhiteSpace         = {LineTerminator} | [ \t\f]
+LineTerminator      = \r|\n|\r\n
+WhiteSpace          = {LineTerminator} | [ \t\f]
 
 /* Comments */
-/* Traditional (multi-line) comments */
-TraditionalComment = "/*"([^*]|\*+[^*/])*\*+"/"
-UnterminatedComment= "/*"([^*]|\*+[^*/])*
+Comment             = {TraditionalComment} | {EndOfLineComment}
+EndOfLineComment    = "//" [^\n\r]* {LineTerminator}?
+TraditionalComment  = "/*" ([^*] | "*"+ [^/])* "*/"
+UnterminatedComment = "/*" ([^*] | "*"+ [^/])*
 
-/* End-of-line (single-line) comments */
-EndOfLineComment   = "//".*
+/* Identifiers, Literals, and Operators */
+Identifier          = [a-zA-Z0-9]+
+IntegerLiteral      = [0-9]+
 
-/* Combined comment rule */
-Comment            = {TraditionalComment} | {EndOfLineComment}
+StringContent       = [^\\\"\n\r] | \\.
+StringLiteral       = \"{StringContent}*\"
+UnterminatedString  = \"{StringContent}*
 
-/* Operators: multi-character first */
-Operator           = "==" | ">=" | "<=" | "++" | "--" | "+" | "-" | "*" | "/" | "=" | ">" | "<"
+Operator            = "+" | "-" | "*" | "/" | "=" | ">" | ">=" | "<" | "<=" | "==" | "++" | "--"
+LeftParenthesis     = "("
+RightParenthesis    = ")"
+Semicolon           = ";"
 
-/* Parentheses */
-LeftParenthesis    = "("
-RightParenthesis   = ")"
-
-/* Semicolon */
-Semicolon          = ";"
-
-/* Keywords */
-Keyword            = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
-
-/* Integer literals (including leading zeros) */
-IntegerLiteral     = [0-9]+
-
-/* Identifiers: start with letter, followed by letters or digits */
-Identifier         = [a-zA-Z][a-zA-Z0-9]*
-
-/* Characters allowed inside strings */
-InputCharacter    = [^\\\"\n\r] | "\\"[^\"]
-
-/* String literals */
-StringLiteral      = "\"" ({InputCharacter} | "\\\"" )* "\""
-
-/* Unterminated string literals */
-UnterminatedString = "\"" ({InputCharacter} | "\\\"" )*
+Keyword             = "if" | "then" | "else" | "endif" | "while" | "do" | "endwhile" | "print" | "newline" | "read"
 
 %%
 
 <YYINITIAL> {
 
-/* Ignore whitespace and comments */
-{WhiteSpace}          { /* Ignore */ }
-{Comment}             { /* Ignore */ }
+  /* Keywords */
+  {Keyword}             { System.out.println("keyword: " + yytext()); }
 
-/* Operators */
-{Operator}            { System.out.println("operator: " + yytext()); }
+  /* Operators */
+  {Operator}            { System.out.println("operator: " + yytext()); }
 
-/* Parentheses and Semicolon */
-{LeftParenthesis}     { System.out.println("left parenthesis: " + yytext()); }
-{RightParenthesis}    { System.out.println("right parenthesis: " + yytext()); }
-{Semicolon}           { System.out.println("semicolon: " + yytext()); }
+  /* Parenthesis and Semicolon */
+  {LeftParenthesis}     { System.out.println("left parenthesis: " + yytext()); }
+  {RightParenthesis}    { System.out.println("right parenthesis: " + yytext()); }
+  {Semicolon}           { System.out.println("semicolon: " + yytext()); }
 
-/* Keywords */
-{Keyword}             { System.out.println("keyword: " + yytext()); }
+  /* Literals */
+  {IntegerLiteral}      { System.out.println("integer: " + yytext()); }
+  {StringLiteral}       { System.out.println("string: " + yytext()); }
 
-/* Integer Literals */
-{IntegerLiteral}      { System.out.println("integer: " + yytext()); }
+  /* Identifiers */
+  {Identifier}          {
+    String text = yytext();
+    if (Character.isDigit(text.charAt(0))) {
+        System.err.println("Error: invalid identifier : " + text);
+        System.exit(1);
+    } else if (identifiers.add(text)) {
+        System.out.println("new identifier: " + text);
+    } else {
+        System.out.println("identifier \"" + text + "\" already in symbol table");
+    }
+  }
 
-/* Identifiers */
-{Identifier}          { 
-                        if (identifiers.add(yytext())) {
-                          System.out.println("new identifier: " + yytext());
-                        } else {
-                          System.out.println("identifier \"" + yytext() + "\" already in symbol table");
-                        }
-                      }
+  /* Unterminated strings */
+  {UnterminatedString}  { 
+    System.err.println("Error: Unterminated string: " + yytext());
+    System.exit(1);
+  }
 
-/* Invalid Identifiers */
-{IntegerLiteral}{Identifier}   { 
-                        System.out.println("Error: invalid identifier: " + yytext());
-                      }
+  /* Ignore comments and whitespace */
+  {WhiteSpace}          { /* Ignore */ }
+  {Comment}             { /* Ignore */ }
 
-/* String Literals */
-{StringLiteral}       { System.out.println("string: " + yytext()); }
+  /* Unterminated comment */
+  {UnterminatedComment} {
+    String text = yytext().split("[\r\n]+")[0];
+    System.err.println("Error: Unterminated comment: " + text);
+    System.exit(1);
+  }
+}
 
-/* Unterminated Strings */
-{UnterminatedString}  { 
-                        System.err.println("Error: Unterminated string: " + yytext());
-                      }
-{UnterminatedComment}   { 
-                        System.err.println("Error: Unterminated comment: " + yytext());
-                      }
 /* Fallback for unexpected characters */
-[^]                     { 
-                        System.err.println("Error: Unexpected character '" + yytext() + "'");
-                      }
-
+[^]                { 
+  System.err.println("Error: Unexpected character '" + yytext() + "'");
+  System.exit(1);
 }

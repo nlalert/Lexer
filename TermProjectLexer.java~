@@ -94,8 +94,8 @@ public class TermProjectLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\1\3\1\4\1\5\4\6\1\7"+
-    "\1\10\1\6\11\11\1\12\2\0\1\2\1\13\1\14"+
-    "\7\11\1\0\12\11";
+    "\1\10\1\6\11\11\1\12\1\0\1\13\1\2\1\14"+
+    "\1\15\7\11\1\0\12\11";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[47];
@@ -236,7 +236,7 @@ public class TermProjectLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\2\11\2\1\3\11\4\1\1\11\12\1\1\11"+
-    "\2\0\12\1\1\0\12\1";
+    "\1\0\13\1\1\0\12\1";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[47];
@@ -679,42 +679,42 @@ public class TermProjectLexer {
             { System.err.println("Error: Unexpected character '" + yytext() + "'");
             }
           // fall through
-          case 13: break;
+          case 14: break;
           case 2:
             { /* Ignore */
             }
           // fall through
-          case 14: break;
+          case 15: break;
           case 3:
             { System.err.println("Error: Unterminated string: " + yytext());
             }
           // fall through
-          case 15: break;
+          case 16: break;
           case 4:
             { System.out.println("left parenthesis: " + yytext());
             }
           // fall through
-          case 16: break;
+          case 17: break;
           case 5:
             { System.out.println("right parenthesis: " + yytext());
             }
           // fall through
-          case 17: break;
+          case 18: break;
           case 6:
             { System.out.println("operator: " + yytext());
             }
           // fall through
-          case 18: break;
+          case 19: break;
           case 7:
             { System.out.println("integer: " + yytext());
             }
           // fall through
-          case 19: break;
+          case 20: break;
           case 8:
             { System.out.println("semicolon: " + yytext());
             }
           // fall through
-          case 20: break;
+          case 21: break;
           case 9:
             { if (identifiers.add(yytext())) {
                           System.out.println("new identifier: " + yytext());
@@ -723,22 +723,27 @@ public class TermProjectLexer {
                         }
             }
           // fall through
-          case 21: break;
+          case 22: break;
           case 10:
             { System.out.println("string: " + yytext());
             }
           // fall through
-          case 22: break;
-          case 11:
-            { System.out.println("Error: invalid identifier: " + yytext());
-            }
-          // fall through
           case 23: break;
-          case 12:
-            { System.out.println("keyword: " + yytext());
+          case 11:
+            { System.err.println("Error: Unterminated comment: " + yytext());
             }
           // fall through
           case 24: break;
+          case 12:
+            { System.out.println("Error: invalid identifier: " + yytext());
+            }
+          // fall through
+          case 25: break;
+          case 13:
+            { System.out.println("keyword: " + yytext());
+            }
+          // fall through
+          case 26: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
